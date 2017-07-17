@@ -9,14 +9,14 @@ const kp = require('ripple-keypairs');
 const rippleEpoch = 946684800
 
 //aKEKiic24cH5kmyhmHLhT6FNGPSLpbtkYJU4f42LHdfC4NxQc3pX
-const masterKey = 'nHBuijaH9X1kA91gtkZotV9FXMpmBCzCQUqTUU9CiGqgPvWaHgbU'
-const masterSecret = 'pn8mz5cceut1Eb5AhnFv9bxRNyQgUirgSTQbz7zquPs5zzwcVbA'
+const masterKey = 'nHUadDhFy5wSPj6aCzVitf7dYguFSg7K2zf37eH2VQ3ZGzZLjXUc'
+const masterSecret = 'pfrtNVe8zLqZqHLcDJZnZdgXiSumXBbKwTxcK3yEEXF1TrNN6Zo'
 
 //aB45YmijSe17uvbAyJCBA6kEQEohuvnykhmEXNRM7raLxGbJZPyH
-const seed = 'shpSdwJbM4HwrX9SeZUoaWx4D1afN';
+const seed = 'sstDP33WqQG4Nd3a4K13jb3tE1fGe';
 const signingPubKey = 
-  'n9KJYeLSD2TXaJW2amtA4VnqCDPWhzBtbyQLcsz6peFMyxUMMsg6';
-//paNDV3g9sNtGNowgNvo7im1zMFAB2aHP1LnjgPYE5yUtfWJD8vJ
+  'n9KkjmKCJspQLKUgKPM2UCMbNPGzhpgS5SAq9W9YeXDazYpvmN6p';
+//pnePXBk6xq5ZDCRP44fKmodVvbKmkMbcXXAoavc9UzXm9Csxekw
 
 function base58toHex (nodePublicKey){
   var public_bytes = addressCodec.decodeNodePublic(nodePublicKey)
@@ -93,11 +93,11 @@ var list = {
       validation_public_key: 'nHUkAWDR4cB8AgPg7VXMX6et8xRTQb2KJfgv1aBEXozwrawRKgMB',
       // validation_manifest: 'JAAAAARxIe25EAWMZjPOEhaZVhHnqflrgwlvCyj1m0r6lEJH3gf0oHMhAwh6o8GCYR0prxdJa1uNqWO5B0K7yi3KmGijRXWfiULfdkAiTThSva+b3Wlf3CLzuSAQfGHYAJHH2lpoFT/Lxiunn32ODgEl8ENHfseApnEWQe+fjFPZ6s/zEWQVAI5v7yQB'
       validation_manifest: 'JAAAAAVxIe25EAWMZjPOEhaZVhHnqflrgwlvCyj1m0r6lEJH3gf0oHMhAwh6o8GCYR0prxdJa1uNqWO5B0K7yi3KmGijRXWfiULfdkYwRAIgHlK6mS1gfKArr8a2oLcsLtFX6zcKRMGfn2Nl/d3aYq4CICEg3pKbtFjWpny/0jTZLKyud4sj2m0nBop4r63F/+bQcBJA6COj4zoHbeLoMwUQi9jdxRNxu5dR7Bx8rYXR21LyyCgw6WgxpbHrASp7Ex2ZQmNY2qTN7XUrSM99TS9yRgnCAA=='
-    },
-    {
-      validation_public_key: 'nHB1X37qrniVugfQcuBTAjswphC1drx7QjFFojJPZwKHHnt8kU7v',
-      // validation_manifest: 'JAAAAANxIe1ETn3WZI/gnC5GjSRLDOQIbG1um36uPI2Ekp1b7Q5E1HMhAo2x9WCHnsVa59/A6AM6OltFhKq0g6SLB15vV3YgfDr6dkBDwdC3N6ReqafsCe1hX7H0UKgN4Wy4tK6VzZdW38AExrfNoQbKu0nSgFb0Kra5v5cOtjInMiUGcYOTOt8TPegD'
-      validation_manifest: 'JAAAAAVxIe1ETn3WZI/gnC5GjSRLDOQIbG1um36uPI2Ekp1b7Q5E1HMhAo2x9WCHnsVa59/A6AM6OltFhKq0g6SLB15vV3YgfDr6dkcwRQIhAO6EG5SJJ/wcxuJMaK6oFnWS0i0IxerK84y1oLfoaI/pAiBY3nV8rPfGuj+8r19G0dSfCMyXJ2xd/hS6dkVtxSTbqXASQEiUE0W7Zmh0zJjrAardpOjmApEHezKOeQcvZrsh6/GPy9izA8iG7227/dkTp/4tZsU8XWpPJD0y65xktsH3igA='
+    // },
+    // {
+    //   validation_public_key: 'nHB1X37qrniVugfQcuBTAjswphC1drx7QjFFojJPZwKHHnt8kU7v',
+    //   // validation_manifest: 'JAAAAANxIe1ETn3WZI/gnC5GjSRLDOQIbG1um36uPI2Ekp1b7Q5E1HMhAo2x9WCHnsVa59/A6AM6OltFhKq0g6SLB15vV3YgfDr6dkBDwdC3N6ReqafsCe1hX7H0UKgN4Wy4tK6VzZdW38AExrfNoQbKu0nSgFb0Kra5v5cOtjInMiUGcYOTOt8TPegD'
+    //   validation_manifest: 'JAAAAAVxIe1ETn3WZI/gnC5GjSRLDOQIbG1um36uPI2Ekp1b7Q5E1HMhAo2x9WCHnsVa59/A6AM6OltFhKq0g6SLB15vV3YgfDr6dkcwRQIhAO6EG5SJJ/wcxuJMaK6oFnWS0i0IxerK84y1oLfoaI/pAiBY3nV8rPfGuj+8r19G0dSfCMyXJ2xd/hS6dkVtxSTbqXASQEiUE0W7Zmh0zJjrAardpOjmApEHezKOeQcvZrsh6/GPy9izA8iG7227/dkTp/4tZsU8XWpPJD0y65xktsH3igA='
     }
   ]
 }
@@ -122,10 +122,11 @@ const signature = kp.sign(
 // const signature = new Buffer(sig_bytes).toString('hex')
 
 const manifest =
-  'JAAAAAFxIe1JnXMr3tAVBKdAfCJEEu9VDMGt5jik3k64ivfDbLiygXMhAmQEEnZX6mMxFC5J\
-R8CUZSiFweEcH43dlmnLpLoMslEAdkYwRAIgRjc+1V1zdcYsNpWckDrqBEazJAjGgFkVOhPx\
-A4piEBoCIEAr3Ypck5W9EXv/WdMSIBcWIiHcU4wd4RBB93iixi2EcBJAgJjvujBZnujqFF13\
-djsDCQkKhrHsfuyv+iSLWAVnAeOnMgexVBwZR8WuX5uvS7ciHzhrP+hOVqEvzQcNei01Dg=='
+  'JAAAAAFxIe1iEAwoMq5KU4dn7MIZkxcQ/5srL0RSHhKumo3RjTVYwnMhAp98yMRtXw5/2meV\
+8xS4rPMgDhy/JCkbN6CpvcGOcO2JdkcwRQIhAJohDcYA6rJ8EXcocUgwIbTlaWRXkYCNR9YP\
+XgzB82btAiBaHtpFGxwRxUpezeJTWXEGg2SKKKpcm7RomYPx+YgVGHASQHwF0KsQ6uoXP137\
+0Jt5R8LK9qqsWshKgapZ0w7MDCUPY2cPiCyEJ+MR/RWjQwBo3gDoVdUs0B6j3olOhb2mfg0='
+
 const resp = {
   public_key: base58toHex(masterKey),
   // manifest: makeManifest (),
@@ -138,9 +139,9 @@ const resp = {
 http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.end(JSON.stringify(resp));
-}).listen(8000, (err) => {
+}).listen(8001, (err) => {
   if (err)
     console.log(err)
   else
-    console.log('server listening on port 8000')
+    console.log('server listening on port 8001')
 });

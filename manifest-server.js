@@ -6,22 +6,13 @@ const hash = require('hash.js');
 const http = require('http');
 const kp = require('ripple-keypairs');
 
-const rippleEpoch = 946684800
-
 //aKEKiic24cH5kmyhmHLhT6FNGPSLpbtkYJU4f42LHdfC4NxQc3pX
 const masterKey = 'nHBuijaH9X1kA91gtkZotV9FXMpmBCzCQUqTUU9CiGqgPvWaHgbU'
 const masterSecret = 'pn8mz5cceut1Eb5AhnFv9bxRNyQgUirgSTQbz7zquPs5zzwcVbA'
 
-//aB45YmijSe17uvbAyJCBA6kEQEohuvnykhmEXNRM7raLxGbJZPyH
 const seed = 'shpSdwJbM4HwrX9SeZUoaWx4D1afN';
 const signingPubKey = 
   'n9KJYeLSD2TXaJW2amtA4VnqCDPWhzBtbyQLcsz6peFMyxUMMsg6';
-//paNDV3g9sNtGNowgNvo7im1zMFAB2aHP1LnjgPYE5yUtfWJD8vJ
-
-function base58toHex (nodePublicKey){
-  var public_bytes = addressCodec.decodeNodePublic(nodePublicKey)
-  return new Buffer(public_bytes).toString('hex')
-}
 
 function makeManifest () {
   const sfSequence = '$'
@@ -50,11 +41,7 @@ function makeManifest () {
   digest = digest.concat(manifest)
 
   const master_secret_bytes = addressCodec.decodeNodePrivate(masterSecret)
-  const masterSig = Ed25519.sign (digest, master_secret_bytes).toBytes()
-
-  const sig = kp.sign(
-    master_secret_bytes.toString('hex'),
-    kp.deriveKeypair(seed, {validator:true}).privateKey)
+  const manSig = Ed25519.sign (digest, master_secret_bytes).toBytes()
 
   master_public_bytes.shift()
   if (!Ed25519.verify(digest, manSig, master_public_bytes)) {
@@ -62,16 +49,13 @@ function makeManifest () {
   }
 
   manifest = manifest.concat(new Buffer(sfSignature).toJSON().data,
-                             [sig.length],
-                             sig,
-                             // new Buffer(sfMasterSignature).toJSON().data,
-                             [masterSig.length],
+                             [manSig.length],
                              manSig)
 
   return Buffer.from(manifest).toString('base64');
 }
 
-var list = {
+const list = {
   sequence: 1,
   validators: [
     {
@@ -102,34 +86,14 @@ var list = {
   ]
 }
 
-
-var unix = Math.round(+new Date()/1000);
-list.expiration = unix + 31536000 - rippleEpoch
-
-for (let validator of list.validators) {
-  validator.validation_public_key = base58toHex(validator.validation_public_key)
-}
-
 var blob_buf = Buffer.from(JSON.stringify(list));
 
 const signature = kp.sign(
   blob_buf.toString('hex'),
   kp.deriveKeypair(seed, {validator:true}).privateKey);
 
-// var digest = blob_buf.toJSON().data
-// const master_secret_bytes = addressCodec.decodeNodePrivate(masterSecret)
-// const sig_bytes = Ed25519.sign (digest, master_secret_bytes).toBytes() //.toString('hex')
-// const signature = new Buffer(sig_bytes).toString('hex')
-
-const manifest =
-  'JAAAAAFxIe1JnXMr3tAVBKdAfCJEEu9VDMGt5jik3k64ivfDbLiygXMhAmQEEnZX6mMxFC5J\
-R8CUZSiFweEcH43dlmnLpLoMslEAdkYwRAIgRjc+1V1zdcYsNpWckDrqBEazJAjGgFkVOhPx\
-A4piEBoCIEAr3Ypck5W9EXv/WdMSIBcWIiHcU4wd4RBB93iixi2EcBJAgJjvujBZnujqFF13\
-djsDCQkKhrHsfuyv+iSLWAVnAeOnMgexVBwZR8WuX5uvS7ciHzhrP+hOVqEvzQcNei01Dg=='
 const resp = {
-  public_key: base58toHex(masterKey),
-  // manifest: makeManifest (),
-  manifest: manifest,
+  manifest: makeManifest (),
   blob: blob_buf.toString('base64'),
   signature: signature,
   version: 1
